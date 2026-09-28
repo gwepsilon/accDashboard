@@ -1,13 +1,15 @@
 {
   "name": "accDashboard",
   "install": "bash scripts/cloud-agent-install.sh",
+  "start": "bash scripts/cloud-agent-start.sh",
   "terminals": [
     {
-      "name": "vite",
+      "name": "next",
       "command": "npm run dev"
     }
   ],
   "ports": [
-    5173
+    3000,
+    5432
   ]
 }
