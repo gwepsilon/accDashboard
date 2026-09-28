@@ -8,3 +8,7 @@ if [[ -f package-lock.json ]]; then
 else
   npm install
 fi
+
+if command -v docker >/dev/null 2>&1; then
+  docker compose pull db 2>/dev/null || true
+fi

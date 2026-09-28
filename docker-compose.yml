@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: acc-dashboard-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: acc
+      POSTGRES_PASSWORD: acc
+      POSTGRES_DB: acc_dashboard
+    ports:
+      - "5432:5432"
+    volumes:
+      - acc_pg_data:/var/lib/postgresql/data
+      - ./docker/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U acc -d acc_dashboard"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  acc_pg_data:
